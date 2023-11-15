@@ -9,9 +9,11 @@ public class Job {
     public static AtomicInteger count = new AtomicInteger(0);
     public static int numberOfThreads = 100;
 
+
     public static void main(String[] args) {
 
-     
+
+        long startTime = System.currentTimeMillis();
         List<Callable<Integer>> callables = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
             callables.add(new MyCallable());
@@ -34,8 +36,10 @@ public class Job {
       
             executorService.shutdown();
         }
-
+        long endTime = System.currentTimeMillis();
         System.out.println(count);
+        System.out.println("Time elapsed: " + (endTime - startTime) + " milliseconds");
+
     }
 }
 
